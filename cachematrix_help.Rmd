@@ -1,0 +1,65 @@
+Cache Matrix Documentation
+========================================================
+
+This document documents the functions that are defined in the **cachematrix.R** file. It provides a description of the function parameters and also provides an example of how the functions work and can be used.
+
+```{r echo=FALSE}
+source("cachematrix.R")
+```
+
+makeCacheMatrix function
+---------------------
+The makeCacheMatrix function customizes a matrix so that additional data can be attached to the object.
+
+Parameters:
+* **x**: A matrix object
+```{r echo=FALSE}
+makeCacheMatrix
+```
+
+Matrix objects returned from the makeCacheMatrix will have the following additional functions:
+* **get**: Gets the original matrix
+* **setInverse**: Stores the inverse of the original matrix
+* **getInverse**: Retrieve the stored inverse of the original matrix
+
+cacheSolve function
+------------------------
+The cacheSolve function takes an matrix object that is returned from the **makeCacheMatrix** function. It then calculates the inverse of the matrix and returns the result. The result is cached after the first call. Subsequent calls will return the cached version of the matrix that was calculated during the first call.
+
+Parameters:
+* **x**: A matrix object that was returned from the **makeCacheMatrix** function
+```{r echo=FALSE}
+cacheSolve
+```
+
+Example of usage
+-----------------------
+
+```{r }
+#Declare an invertible matrix
+testMatrix <- rbind(c(1, -1/4), c(-1/4, 1))
+
+#Pass the test matrix through the makeCacheMatrix function
+cacheMatrix <- makeCacheMatrix(testMatrix)
+cacheMatrix$get()
+```
+
+First call the the cacheSolve function. The solve function is actually run
+```{r}
+#First call
+cacheSolve(cacheMatrix)
+```
+
+Second call the the cacheSolve function. Note the message **Retrieving from cache**. The second and any subsequent calls will not actually perform the solve function again. The result will be retrieved from cache
+```{r}
+#Second call
+cacheSolve(cacheMatrix)
+```
+
+Help
+----------------------------
+If the cacheSolve function is called without first passing the matrix through the makeCacheMatrix function then the following error will occur:
+```{r}
+testMatrix <- rbind(c(1, -1/4), c(-1/4, 1))
+cacheSolve(testMatrix)
+```

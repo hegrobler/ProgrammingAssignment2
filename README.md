@@ -1,3 +1,15 @@
+Edit:
+----------------
+This repository contains the solution for the Coursera R Programming course assignment.
+
+The solution files contain the following:
+
+* **cachematrix.R**: The R script containing the solution to the assignment
+* **cachematrix_help.html**: Documents the functions in **cachematrix.R** and provides usage examples
+* **cachematrix_help.Rmd**: The mark-up document used to generate the **cachematrix_help.html** file
+
+###More information about the assignment can be found below.
+
 ### Introduction
 
 This second programming assignment will require you to write an R
